@@ -2,8 +2,10 @@
 // CONFIGURAÇÃO DA API
 // ============================================
 
-// URL base da API REST (backend rodando em localhost:3000)
-const API_BASE_URL = 'http://localhost:3000';
+// URL base da API REST
+// Em produção, usa a mesma origem (URL relativa)
+// Em desenvolvimento, pode usar localhost:3000 se necessário
+const API_BASE_URL = window.location.origin;
 
 // Endpoint completo para tarefas
 const API_TASKS_URL = `${API_BASE_URL}/tasks`;

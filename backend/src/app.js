@@ -5,6 +5,9 @@
 // Importa o framework Express
 const express = require('express');
 
+// Importa o módulo path para trabalhar com caminhos de arquivos
+const path = require('path');
+
 // Importa o middleware CORS para permitir requisições do frontend
 const cors = require('cors');
 
@@ -43,15 +46,30 @@ app.use(express.json());
  */
 app.use(express.urlencoded({ extended: true }));
 
+/**
+ * Middleware para servir arquivos estáticos do frontend
+ * Serve os arquivos CSS, JS e HTML da pasta frontend
+ * Configurado para servir a partir da raiz do projeto para manter os caminhos /frontend/...
+ */
+app.use(express.static(path.join(__dirname, '../..')));
+
 // ============================================
 // ROTAS
 // ============================================
 
 /**
- * Rota raiz da API
- * Retorna informações básicas sobre a API
+ * Rota raiz - serve o index.html do frontend
+ * Esta rota deve vir antes das rotas da API para não interferir
  */
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/Html/index.html'));
+});
+
+/**
+ * Rota /api para informações sobre a API
+ * Retorna informações básicas sobre a API
+ */
+app.get('/api', (req, res) => {
     res.status(200).json({
         success: true,
         message: 'API REST - Lista de Tarefas',
@@ -84,14 +102,21 @@ app.use('/tasks', taskRoutes);
 /**
  * Middleware para tratar rotas não encontradas (404)
  * Este middleware é executado quando nenhuma rota anterior corresponde
+ * Para rotas da API, retorna JSON. Para outras rotas, retorna o index.html (SPA)
  */
 app.use((req, res) => {
-    res.status(404).json({
-        success: false,
-        message: 'Rota não encontrada',
-        path: req.originalUrl,
-        method: req.method
-    });
+    // Se a rota começa com /tasks, é uma rota da API e retorna JSON
+    if (req.path.startsWith('/tasks')) {
+        res.status(404).json({
+            success: false,
+            message: 'Rota não encontrada',
+            path: req.originalUrl,
+            method: req.method
+        });
+    } else {
+        // Para outras rotas, retorna o index.html (útil para SPAs)
+        res.sendFile(path.join(__dirname, '../../frontend/Html/index.html'));
+    }
 });
 
 /**

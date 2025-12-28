@@ -14,8 +14,8 @@ generator client {
 // Configuração do banco de dados
 // DATABASE_URL deve estar definida no arquivo .env
 datasource db {
-  provider = "sqlite"  // Usa SQLite como banco de dados
-  url      = env("DATABASE_URL")  // URL do banco vem da variável de ambiente
+  provider = "postgresql"  // Mudar de "sqlite" para "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // ============================================

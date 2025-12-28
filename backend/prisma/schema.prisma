@@ -1,0 +1,46 @@
+// ============================================
+// CONFIGURAÇÃO DO PRISMA
+// ============================================
+
+// Configuração do gerador de cliente Prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ============================================
+// CONFIGURAÇÃO DA FONTE DE DADOS
+// ============================================
+
+// Configuração do banco de dados
+// DATABASE_URL deve estar definida no arquivo .env
+datasource db {
+  provider = "sqlite"  // Usa SQLite como banco de dados
+  url      = env("DATABASE_URL")  // URL do banco vem da variável de ambiente
+}
+
+// ============================================
+// MODEL: Task (Tarefa)
+// ============================================
+
+// Model Task representa uma tarefa na aplicação
+// Cada tarefa tem um ID único, título, status de conclusão e data de criação
+model Task {
+  // ID único da tarefa (chave primária, auto-incremento)
+  id        Int      @id @default(autoincrement())
+  
+  // Título da tarefa (obrigatório, máximo 200 caracteres)
+  // SQLite não suporta tipos nativos como VarChar, usa String genérico
+  title     String
+  
+  // Status de conclusão (padrão: false = não concluída)
+  completed Boolean  @default(false)
+  
+  // Data e hora de criação (preenchida automaticamente)
+  createdAt DateTime @default(now())
+  
+  // Índice para melhorar performance em buscas por status
+  @@index([completed])
+  
+  // Nome da tabela no banco de dados
+  @@map("tasks")
+}

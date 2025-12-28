@@ -1,0 +1,310 @@
+/* ============================================
+   RESET E CONFIGURAÇÕES GERAIS
+   ============================================ */
+
+/* Remove margens e paddings padrão de todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Define a fonte padrão e cor de fundo para toda a página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ============================================
+   CONTAINER PRINCIPAL
+   ============================================ */
+
+/* Container que centraliza e limita a largura do conteúdo */
+.container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+}
+
+/* ============================================
+   CABEÇALHO
+   ============================================ */
+
+/* Estilização do título principal */
+header h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* ============================================
+   SEÇÃO DE INPUT
+   ============================================ */
+
+/* Container que agrupa o input e o botão */
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+/* Campo de texto para digitar a tarefa */
+#taskInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Efeito quando o input está em foco */
+#taskInput:focus {
+    border-color: #667eea;
+}
+
+/* Botão de adicionar tarefa */
+#addButton {
+    padding: 12px 24px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+
+/* Efeito hover no botão */
+#addButton:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+}
+
+/* Efeito quando o botão é clicado */
+#addButton:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   LISTA DE TAREFAS
+   ============================================ */
+
+/* Lista de tarefas */
+.task-list {
+    list-style: none;
+}
+
+/* Item individual de tarefa */
+.task-item {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease;
+}
+
+/* Animação de entrada quando uma tarefa é adicionada */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efeito hover na tarefa */
+.task-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Texto da tarefa */
+.task-text {
+    flex: 1;
+    font-size: 1rem;
+    color: #333;
+    word-wrap: break-word;
+}
+
+/* Tarefa concluída - texto riscado e cor diferente */
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #999;
+    font-style: italic;
+}
+
+/* Botões de ação (Concluir e Remover) */
+.task-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Botão de concluir */
+.complete-button {
+    background: #28a745;
+    color: white;
+}
+
+.complete-button:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* Quando a tarefa já está concluída, o botão muda de cor */
+.task-item.completed .complete-button {
+    background: #6c757d;
+}
+
+.task-item.completed .complete-button:hover {
+    background: #5a6268;
+}
+
+/* Botão de remover */
+.remove-button {
+    background: #dc3545;
+    color: white;
+}
+
+.remove-button:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+
+/* Ajustes para telas menores (tablets e celulares) */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .input-section {
+        flex-direction: column;
+    }
+
+    #addButton {
+        width: 100%;
+    }
+
+    .task-item {
+        flex-wrap: wrap;
+    }
+
+    .task-button {
+        flex: 1;
+        min-width: 100px;
+    }
+}
+
+/* Ajustes para telas muito pequenas (celulares pequenos) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .task-item {
+        padding: 12px;
+    }
+
+    .task-text {
+        font-size: 0.9rem;
+    }
+
+    .task-button {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+}
+
+/* ============================================
+   ESTADO VAZIO (quando não há tarefas)
+   ============================================ */
+
+/* Mensagem quando a lista está vazia */
+.task-list:empty::before {
+    content: "Nenhuma tarefa adicionada ainda. Comece adicionando uma tarefa acima!";
+    display: block;
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+/* 
+EXPLICAÇÃO DO ARQUIVO CSS:
+
+Este arquivo define toda a aparência visual da aplicação de lista de tarefas.
+
+1. Reset CSS:
+   - Remove estilos padrão do navegador
+   - box-sizing: border-box facilita cálculos de largura
+
+2. Layout:
+   - body usa flexbox para centralizar o container
+   - Gradiente de fundo para visual moderno
+   - Container branco com sombra para destaque
+
+3. Componentes:
+   - Input e botão com bordas arredondadas e transições suaves
+   - Hover effects para melhor feedback visual
+   - Tarefas com animação de entrada
+
+4. Estados visuais:
+   - Tarefas concluídas têm texto riscado e cor diferente
+   - Botões mudam de cor quando a tarefa está concluída
+   - Hover effects em todos os elementos interativos
+
+5. Responsividade:
+   - Media queries para adaptar em diferentes tamanhos de tela
+   - Em mobile, o input e botão ficam em coluna
+   - Botões se ajustam para ocupar espaço disponível
+
+6. Acessibilidade:
+   - Cores com bom contraste
+   - Tamanhos de fonte legíveis
+   - Transições suaves para feedback visual
+
+O CSS trabalha em conjunto com o HTML e JavaScript para criar uma experiência
+visual agradável e intuitiva para o usuário.
+*/
+

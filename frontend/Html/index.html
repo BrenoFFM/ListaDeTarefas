@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Lista de Tarefas</title>
+    <link rel="stylesheet" href="/frontend/Css/style.css">
+</head>
+<body>
+    <!-- Container principal que centraliza todo o conteúdo -->
+    <div class="container">
+        <!-- Cabeçalho da aplicação -->
+        <header>
+            <h1>Minha Lista de Tarefas</h1>
+        </header>
+
+        <!-- Seção principal onde ficam o input e a lista -->
+        <main>
+            <!-- Formulário para adicionar novas tarefas -->
+            <div class="input-section">
+                <input 
+                    type="text" 
+                    id="taskInput" 
+                    placeholder="Digite sua tarefa aqui..." 
+                    maxlength="100"
+                >
+                <button id="addButton" type="button">Adicionar</button>
+            </div>
+
+            <!-- Lista de tarefas (será populada dinamicamente pelo JavaScript) -->
+            <ul id="taskList" class="task-list">
+                <!-- As tarefas serão inseridas aqui via JavaScript -->
+            </ul>
+        </main>
+    </div>
+
+    <!-- Script JavaScript que controla toda a lógica da aplicação -->
+    <script src="/frontend/Js/script.js"></script>
+</body>
+</html>
+
+<!-- 
+EXPLICAÇÃO DO ARQUIVO HTML:
+
+Este arquivo define a estrutura básica da aplicação de lista de tarefas.
+
+1. Estrutura semântica:
+   - <header>: Contém o título principal
+   - <main>: Área principal com o formulário e lista
+   - <ul>: Lista não ordenada que receberá as tarefas dinamicamente
+
+2. Elementos principais:
+   - #taskInput: Campo de texto onde o usuário digita a tarefa
+   - #addButton: Botão que aciona a adição de nova tarefa
+   - #taskList: Lista que será preenchida com as tarefas criadas
+
+3. Acessibilidade:
+   - Atributo maxlength limita o tamanho do texto
+   - Placeholder orienta o usuário sobre o que fazer
+   - Estrutura semântica facilita leitores de tela
+
+4. Responsividade:
+   - Meta viewport garante adaptação em dispositivos móveis
+   - CSS será responsivo para diferentes tamanhos de tela
+
+O JavaScript (script.js) será responsável por:
+- Capturar o valor do input
+- Criar elementos HTML dinamicamente para cada tarefa
+- Adicionar funcionalidades de concluir e remover
+-->
+

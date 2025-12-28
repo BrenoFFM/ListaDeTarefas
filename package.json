@@ -1,0 +1,22 @@
+{
+  "name": "lista-de-tarefas",
+  "version": "1.0.0",
+  "description": "Aplicação de Lista de Tarefas - Full Stack",
+  "scripts": {
+    "build": "cd backend && npm install && npx prisma generate",
+    "start": "cd backend && node src/server.js",
+    "vercel-build": "cd backend && npm install && npx prisma generate"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "todo",
+    "tarefas",
+    "express",
+    "prisma"
+  ],
+  "author": "",
+  "license": "ISC"
+}
+
